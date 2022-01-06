@@ -1,0 +1,72 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0809ee8fa6.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+</main>
+<style>
+    .center-me {
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+        text-align: "center";
+    }
+    #s3-display {
+        display: block;
+        
+        width: 150px;
+        margin: 10px auto;
+        border-radius: 50%;
+    }
+    
+    #s3-style {
+        font-size: 20px;
+        font-family: "Lucida Console", Courier, monospace;
+        font-weight: bold;
+    }
+    
+    </style>
+    
+    <script>
+        function triggered(){
+            document.querySelector("#s3-image").click();
+        }
+    
+        function preview(e){
+            if(e.files[0]){
+                var reader = new FileReader();
+    
+                reader.onload = function(e){
+                    document.querySelector('#s3-display').setAttribute('src',e.target.result);
+                }
+                reader.readAsDataURL(e.files[0]);
+    
+            }
+        }
+    </script>
+
+<div class="h-50 center-me text-center">
+    <div class="my-auto">
+        <form action="s3-helper.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <img src="anon.png" onclick="triggered();" id="s3-display">
+                <label for="s3-image" id="uname-style">S3 Frontend</label>
+                <input type="file" name="s3-image" id="s3-image" onchange="preview(this)" class="form-control" style="display: none;">
+            </div>
+            <div class="form-group">
+                <button type="submit" name="s3-submit" class="btn btn-outline-success btn-lg btn-block">upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+</main>
